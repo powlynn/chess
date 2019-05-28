@@ -1,4 +1,9 @@
 .Chessboard {
     background-color: #eee;
     border: 5px solid black;
+    width:448px;
+    height:448px;
+    display:flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
 }

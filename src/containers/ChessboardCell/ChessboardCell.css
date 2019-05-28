@@ -1,0 +1,24 @@
+.ChessboardCell {
+    width: 50px;
+    border: 3px solid black;
+    text-align: center;
+}
+
+.Potential {
+    background-color: skyblue !important;
+    color: black !important;
+}
+
+.Black {
+    background-color: black;
+    color:white;
+}
+
+.White {
+    background-color:beige;
+}
+
+.Selected {
+    background-color: pink !important;
+    color: black;
+}
