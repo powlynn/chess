@@ -338,7 +338,7 @@ class Chessboard extends Component {
 
     // handler for when a piece is clicked,
     // will display potential moves for piece passed in
-    pieceClicked = (piece) => {
+    pieceClicked = (piece, potentialMove) => {
 
         if (piece) {
             // set selectedId on state
@@ -477,10 +477,33 @@ class Chessboard extends Component {
                 
             }
 
-            console.log(potentialMoves);
-
             // set new potentialMoves state and set piece as selected
             this.setState({potentialMoves: potentialMoves});
+            
+        } else if (potentialMove) {
+
+            // enter this block if the user clicked on a blue potential move square
+            const pieceId = this.state.selectedId;
+
+            // find the piece in the white pieces, if not there then the black pieces
+            let findPiece = this.state.whitePieces.filter(x => x.id === pieceId)[0];
+
+            if (!findPiece) {
+                findPiece = this.state.blackPieces.filter(x => x.id === pieceId)[0];
+            }
+
+            // set its new positions
+            findPiece.positionX = potentialMove.x;
+            findPiece.positionY = potentialMove.y; 
+
+            // update state
+            let blackPiecesCopy = [...this.state.blackPieces];
+            
+            blackPiecesCopy.splice(blackPiecesCopy.indexOf(findPiece), 1);
+            blackPiecesCopy.push(findPiece);
+
+            this.setState({blackPieces: blackPiecesCopy});
+            this.setState({selectedId: null});
         }
 
     }
@@ -506,6 +529,12 @@ class Chessboard extends Component {
                     findPiece = this.state.blackPieces
                         .filter(p => p.positionX === x 
                             && p.positionY === y)[0];
+                    
+                    if (findPiece) {
+                        findPiece.isBlack = true;
+                    }
+                } else {
+                    findPiece.isBlack = false;
                 }
 
                 // get the potential moves for this piece

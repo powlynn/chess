@@ -2,6 +2,8 @@
     width: 50px;
     border: 3px solid black;
     text-align: center;
+    height: 50px;
+    cursor: pointer;
 }
 
 .Potential {
@@ -21,4 +23,24 @@
 .Selected {
     background-color: pink !important;
     color: black;
+}
+
+img {
+    margin-top: -25px;
+}
+
+.rook-img {
+    margin-top: -9px !important;
+}
+
+.pawn-img {
+    margin-top: -15px !important;
+}
+
+.king-img {
+    margin-top: -50px !important;
+}
+
+.queen-img {
+    margin-top: -43px !important;
 }
